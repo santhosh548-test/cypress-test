@@ -3,12 +3,16 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:smoke": "cypress run --env grepTags=smoke"
   },
   "author": "santhosh",
   "license": "ISC",
   "description": "",
   "dependencies": {
     "cypress": "^14.3.3"
+  },
+  "devDependencies": {
+    "cypress-grep": "^3.0.4"
   }
 }

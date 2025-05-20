@@ -24,3 +24,5 @@ after(()=>{
     //example: clear cookies
     //close db connection
 })
+
+require('cypress-grep')();
