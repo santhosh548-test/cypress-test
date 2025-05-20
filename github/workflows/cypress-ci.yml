@@ -1,0 +1,41 @@
+name: cypress tests
+
+on:
+  push:
+    branches:[main]
+  
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: action/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run Cypress tests
+      uses: cypres-io/github-action@v6
+      with:
+        browser: chrome
+        spec: cypress/e2e/trainingTests/*.cy.js
+
+    - name: Upload Cypress Videos
+      if: failure()
+      uses: actions/upload-artifact@v3
+      with:
+        name: cypress-videos
+        path: cypress/videos
+
+    - name: Upload Cypress Screenshots
+      if: failure()
+      uses: actions/upload-artifact@v3
+      with:
+        name: cypress-screenshots
+        path: cypress/screenshots

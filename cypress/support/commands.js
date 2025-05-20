@@ -23,3 +23,49 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+// ✅ Reusable login command
+Cypress.Commands.add('login', (username, password) => {
+    cy.request('POST', '/api/login', { username, password })
+      .then((response) => {
+        localStorage.setItem('authToken', response.body.token);
+      });
+
+
+  });
+  
+  // ✅ Custom form validation command
+  Cypress.Commands.add('validateFormError', (selector, message) => {
+    cy.get(selector)
+      .should('have.class', 'error')
+      .and('contain.text', message);
+  });
+  
+  // ✅ Overwriting 'visit' to always include auth token
+  Cypress.Commands.overwrite('visit', (originalFn, url, options = {}) => {
+    const token = localStorage.getItem('authToken');
+    options.headers = {
+      ...options.headers,
+      Authorization: `Bearer ${token}`,
+    };
+    return originalFn(url, options);
+  });
+
+  Cypress.Commands.add('loginToApplication', (username, password) => {
+    cy.visit("/")
+    cy.get('[href="/login"]').click()
+    cy.get('[class="login-form"]').should('be.visible');
+    cy.get('[data-qa="login-email"]').type(username);
+    cy.get('[data-qa="login-password"]').type(password);
+    cy.get('[data-qa="login-button"]').click();
+
+    cy.get('a').contains('Logged in as').should('be.visible')
+  });
+
+  Cypress.Commands.overwrite('type', (originalFn, subject, text, options) => {
+    subject.val(''); // clear the field before typing
+    return originalFn(subject, text, options);
+  });
+
+  
+  

@@ -15,3 +15,12 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
+
+before(()=>{
+    console.log("runs before each test spec file")
+})
+after(()=>{
+    console.log("runs after each test spec file")
+    //example: clear cookies
+    //close db connection
+})
