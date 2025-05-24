@@ -19,7 +19,7 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install --legacy-peer-deps
 
       - name: Run Cypress with Recording
         run: npx cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }}
