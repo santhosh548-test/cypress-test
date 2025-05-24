@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "test:smoke": "cypress run --env grepTags=smoke"
+    "test:smoke": "cypress run --env grepTags=smoke",
+    "cypress-cloud-run": "npx cypress run --record --key c0b7e742-5ca6-42e1-aa70-88e4e1a23a14 --spec cypress/e2e/trainingTests"
   },
   "author": "santhosh",
   "license": "ISC",
