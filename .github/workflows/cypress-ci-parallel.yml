@@ -3,6 +3,7 @@ name: cypress tests - parallel
 on:
   push:
     branches: [main]
+  workflow_dispatch:
   
 jobs:
   cypress-run:
