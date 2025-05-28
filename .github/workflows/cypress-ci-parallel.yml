@@ -1,0 +1,27 @@
+name: cypress tests
+
+on:
+  push:
+    branches: [main]
+  
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    strategry:
+      matrix:
+        containers: [1,2]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run Cypress with Recording
+      run: npx cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }} --parallel
