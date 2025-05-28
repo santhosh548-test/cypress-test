@@ -7,7 +7,7 @@ on:
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
-    strategry:
+    strategy:
       matrix:
         containers: [1,2]
 
@@ -24,4 +24,4 @@ jobs:
       run: npm ci
 
     - name: Run Cypress with Recording
-      run: npx cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }} --parallel
+      run: npx cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }} --parallel --ci-build-id ${{ github.run_id }}
