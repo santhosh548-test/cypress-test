@@ -1,4 +1,4 @@
-name: Cypress CI - Cross-Browser - ${{ github.run_started_at }}
+name: Cypress CI - Cross-Browser
 
 on:
   push:

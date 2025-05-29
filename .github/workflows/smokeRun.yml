@@ -1,5 +1,4 @@
-name: Cypress Smoke Tests ${{ github.run_started_at }}
-
+name: Cypress Smoke Tests
 on:
   push:
     branches: [main]
