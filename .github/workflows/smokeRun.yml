@@ -21,4 +21,4 @@ jobs:
         run: npm install --legacy-peer-deps
 
       - name: Run Cypress Smoke Tests
-        run: npm run test:smoke --record --key ${{ secrets.CYPRESS_RECORD_KEY }} --tag smokeTests
+        run: npm run test:smoke -- --record --key ${{ secrets.CYPRESS_RECORD_KEY }} --tag smokeTests
