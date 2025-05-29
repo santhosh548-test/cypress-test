@@ -34,3 +34,6 @@ jobs:
         --browser ${{matrix.browser}} \
         --spec cypress/e2e/trainingTests \
         --tag cross-browser,${{ matrix.browser }}
+      env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          COMMIT_INFO_MESSAGE: "Cypress Cross Browser Run"
