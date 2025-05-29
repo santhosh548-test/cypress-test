@@ -11,7 +11,7 @@ describe('Custom Login Command Test', () => {
   beforeEach(()=>{
     cy.loginToApplication(testData.user.username, testData.user.password);
   })
-  it('form validations-get the total products', () => {   
+  it('form validations-get the total products',{ tags: ['smoke'] }, () => {   
       clickElement('[href="/products"]')
       verifyElementVisible('[id="search_product"]');
     });

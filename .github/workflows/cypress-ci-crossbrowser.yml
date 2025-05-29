@@ -1,4 +1,4 @@
-name: cypress tests - cross browser
+name: Cypress CI - Cross-Browser - ${{ github.run_started_at }}
 
 on:
   push:
@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        browser: [chrome, firefox]
+        browser: [chrome, electron]
 
     steps:
     - name: Checkout repository
