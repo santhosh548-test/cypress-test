@@ -1,0 +1,28 @@
+name: cypress tests - cross browser
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        browser: [chrome, edge]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Install dependencies
+      run: npm install --legacy-peer-deps
+
+    - name: Run Cypress with Recording
+      run: npx cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY } --browser ${{matrix.browser}} --spec cypress/e2e/trainingTests
