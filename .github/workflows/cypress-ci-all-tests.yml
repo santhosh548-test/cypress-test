@@ -21,3 +21,6 @@ jobs:
 
       - name: Run Cypress with Recording
         run: npx cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }}
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          COMMIT_INFO_MESSAGE: "Cypress All tests"
