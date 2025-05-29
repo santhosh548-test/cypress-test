@@ -21,7 +21,13 @@ jobs:
         run: npm install --legacy-peer-deps
 
       - name: Run Cypress Smoke Tests
-        run: npm run test:smoke -- --record --key ${{ secrets.CYPRESS_RECORD_KEY }} --tag smokeTests
+        run: |
+          npm run test:smoke -- \
+            --record \
+            --key $CYPRESS_RECORD_KEY \
+            --tag smokeTests \
+            --group "Smoke Group - ${{ github.run_number }}" \
+            --ci-build-id "${{ github.run_id }}"
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          COMMIT_INFO_MESSAGE: cypress-smoke-run
+          COMMIT_INFO_MESSAGE: "Cypress Smoke Run - ${{ github.workflow }} #${{ github.run_number }}"
