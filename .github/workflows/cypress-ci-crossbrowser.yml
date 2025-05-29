@@ -33,3 +33,4 @@ jobs:
         --browser ${{matrix.browser}} \
         --spec cypress/e2e/trainingTests \
         --tag cross-browser,ci,${{ matrix.browser }}
+        -- group cross-browser-tests
