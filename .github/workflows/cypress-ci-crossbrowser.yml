@@ -25,4 +25,11 @@ jobs:
       run: npm install --legacy-peer-deps
 
     - name: Run Cypress with Recording
-      run: npx cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY } --browser ${{matrix.browser}} --spec cypress/e2e/trainingTests
+      run: | 
+        npx cypress run \
+        --record \
+        --key ${{ secrets.CYPRESS_RECORD_KEY }} \
+        --ci-build-id ${{ github.run_id }} \
+        --browser ${{matrix.browser}} \
+        --spec cypress/e2e/trainingTests \
+        --tag cross-browser,ci,${{ matrix.browser }}
