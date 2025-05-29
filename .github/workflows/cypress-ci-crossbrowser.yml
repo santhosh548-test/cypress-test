@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        browser: [chrome, edge]
+        browser: [chrome, firefox]
 
     steps:
     - name: Checkout repository
@@ -33,4 +33,4 @@ jobs:
         --group cross-browser-tests-${{matrix.browser}} \
         --browser ${{matrix.browser}} \
         --spec cypress/e2e/trainingTests \
-        --tag cross-browser,ci,${{ matrix.browser }}
+        --tag cross-browser,${{ matrix.browser }}
