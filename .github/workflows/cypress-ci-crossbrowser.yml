@@ -30,7 +30,7 @@ jobs:
         --record \
         --key ${{ secrets.CYPRESS_RECORD_KEY }} \
         --ci-build-id ${{ github.run_id }} \
-        --group cross-browser-tests \
+        --group cross-browser-tests-${{matrix.browser}} \
         --browser ${{matrix.browser}} \
         --spec cypress/e2e/trainingTests \
         --tag cross-browser,ci,${{ matrix.browser }}
