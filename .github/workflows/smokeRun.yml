@@ -22,3 +22,6 @@ jobs:
 
       - name: Run Cypress Smoke Tests
         run: npm run test:smoke -- --record --key ${{ secrets.CYPRESS_RECORD_KEY }} --tag smokeTests
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          COMMIT_INFO_MESSAGE: cypress-smoke-run
