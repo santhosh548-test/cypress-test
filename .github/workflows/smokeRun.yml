@@ -30,4 +30,4 @@ jobs:
             --ci-build-id "${{ github.run_id }}"
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          COMMIT_INFO_MESSAGE: "Cypress Smoke Run - ${{ github.workflow }} #${{ github.run_number }}"
+          COMMIT_INFO_MESSAGE: "Cypress Smoke Run"
